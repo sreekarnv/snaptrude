@@ -1,10 +1,8 @@
-import { json, type LinksFunction } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
 import mapboxgl from 'mapbox-gl';
 import React from 'react';
-import mapboxStyles from 'mapbox-gl/dist/mapbox-gl.css';
-import Button from '~/components/button';
-import { styled } from '~/theme/stitches';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import Button from '../components/button';
+import { styled } from '../theme/stitches';
 
 const Root = styled('div', {
 	margin: '0 auto',
@@ -29,21 +27,10 @@ const MapContainer = styled('div', {
 	width: '100%',
 });
 
-export const links: LinksFunction = () => [
-	{
-		rel: 'stylesheet',
-		href: mapboxStyles,
-	},
-];
-
-export const loader = async () => {
-	return json({ accessToken: process.env.MAPBOX_ACCESS_TOKEN });
-};
-
 const MARKER_LIMIT = 4;
 
 const IndexPage: React.FC = () => {
-	const { accessToken } = useLoaderData<typeof loader>();
+	const accessToken = import.meta.env.VITE_APP_MAPBOX_ACCESS_TOKEN;
 	const mapContainerRef = React.useRef<HTMLDivElement | null>(null);
 	const mapRef = React.useRef<null | mapboxgl.Map>(null);
 	const [canMark, setCanMark] = React.useState(false);
