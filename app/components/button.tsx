@@ -13,6 +13,11 @@ const Button = styled('button', {
 	'&:where(:hover, :focus)': {
 		backgroundColor: '$dark1',
 	},
+
+	'&:disabled': {
+		opacity: 0.7,
+		pointerEvents: 'none',
+	},
 });
 
 export default Button;
