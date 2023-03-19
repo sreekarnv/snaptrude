@@ -3,6 +3,11 @@ import React from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Button from '../components/button';
 import { styled } from '../theme/stitches';
+import Cube from '../components/cuboid';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import { AppContext } from '../AppProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Root = styled('div', {
 	margin: '0 auto',
@@ -35,10 +40,8 @@ const IndexPage: React.FC = () => {
 	const mapRef = React.useRef<null | mapboxgl.Map>(null);
 	const [canMark, setCanMark] = React.useState(false);
 	const markers = React.useRef<mapboxgl.Marker[]>([]);
-	const [bounds, setBounds] = React.useState<mapboxgl.LngLatBounds | null>(
-		null
-	);
-	const [url, setURL] = React.useState<string | null>(null);
+	const { updateUrl } = React.useContext(AppContext);
+	const navigate = useNavigate();
 
 	React.useEffect(() => {
 		if (mapContainerRef.current && typeof accessToken === 'string') {
@@ -88,7 +91,6 @@ const IndexPage: React.FC = () => {
 	);
 
 	React.useEffect(() => {
-		console.log({ canMark });
 		if (canMark) {
 			mapRef.current?.on('click', handleMapClick);
 		} else {
@@ -101,7 +103,6 @@ const IndexPage: React.FC = () => {
 			const bounds = new mapboxgl.LngLatBounds();
 			markers.current.forEach((marker) => bounds.extend(marker.getLngLat()));
 			mapRef.current.fitBounds(bounds, { padding: 50 });
-			setBounds(bounds);
 		}
 	};
 
@@ -113,7 +114,8 @@ const IndexPage: React.FC = () => {
 				img.src = reader.result;
 				img.onload = () => {
 					const url = img.src;
-					setURL(url);
+					updateUrl(url);
+					navigate('/result');
 				};
 			};
 			reader.readAsDataURL(blob!);
@@ -146,10 +148,6 @@ const IndexPage: React.FC = () => {
 				</Nav>
 
 				<MapContainer ref={mapContainerRef} />
-
-				{url && bounds && (
-					<img style={{ height: '600px', width: '800px' }} src={url} alt='' />
-				)}
 			</Root>
 		</>
 	);

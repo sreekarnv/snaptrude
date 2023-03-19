@@ -9,14 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@babylonjs/core": "^5.51.0",
-    "@babylonjs/gui": "^5.51.0",
+    "@react-three/drei": "^9.57.3",
+    "@react-three/fiber": "^8.12.0",
     "@stitches/react": "^1.2.8",
-    "babylonjs": "^5.51.0",
+    "@types/three": "^0.149.0",
     "mapbox-gl": "^2.13.0",
     "react": "^18.2.0",
-    "react-babylonjs": "^3.1.15",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0",
+    "three": "^0.150.1"
   },
   "devDependencies": {
     "@types/mapbox-gl": "^2.7.10",
