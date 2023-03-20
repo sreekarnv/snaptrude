@@ -1,12 +1,9 @@
 import mapboxgl from 'mapbox-gl';
 import React from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import Button from '../components/button';
-import { styled } from '../theme/stitches';
-import Cube from '../components/cuboid';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import { AppContext } from '../AppProvider';
+import Button from '@/components/button';
+import { styled } from '@/theme/stitches';
+import { AppContext } from '@/providers/app-provider';
 import { useNavigate } from 'react-router-dom';
 
 const Root = styled('div', {
@@ -20,6 +17,7 @@ const Nav = styled('nav', {
 	alignItems: 'center',
 	gap: '2rem',
 	marginBottom: '5rem',
+	paddingTop: '2rem',
 
 	p: {
 		fontSize: '1.6rem',
@@ -30,6 +28,10 @@ const Nav = styled('nav', {
 const MapContainer = styled('div', {
 	height: '70rem',
 	width: '100%',
+
+	'@bp1': {
+		height: '50rem',
+	},
 });
 
 const MARKER_LIMIT = 4;
@@ -67,7 +69,6 @@ const IndexPage: React.FC = () => {
 	const handleMapClick = React.useCallback(
 		(e: mapboxgl.MapMouseEvent & mapboxgl.EventData) => {
 			const { lng, lat } = e.lngLat;
-			console.log('lng, lat', lng, lat);
 
 			if (markers.current.length === MARKER_LIMIT) {
 				return;

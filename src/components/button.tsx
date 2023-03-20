@@ -1,4 +1,4 @@
-import { styled } from '../theme/stitches';
+import { styled } from '@/theme/stitches';
 
 const Button = styled('button', {
 	backgroundColor: '$black',

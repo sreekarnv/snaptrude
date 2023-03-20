@@ -3,9 +3,9 @@ import { Canvas } from '@react-three/fiber';
 import { styled } from '@stitches/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppContext } from '../AppProvider';
-import Button from '../components/button';
-import Cube from '../components/cuboid';
+import { AppContext } from '@/providers/app-provider';
+import Button from '@/components/button';
+import Cube from '@/components/cuboid';
 
 const Section = styled('section', {
 	marginBottom: '2rem',
@@ -14,6 +14,10 @@ const Section = styled('section', {
 		textAlign: 'center',
 		marginBottom: '1rem',
 		fontSize: '4rem',
+
+		'@bp1': {
+			fontSize: '3rem',
+		},
 	},
 });
 
@@ -21,6 +25,8 @@ const Container = styled('div', {
 	maxWidth: '112rem',
 	margin: '0 auto',
 	paddingTop: '2rem',
+	paddingLeft: '1rem',
+	paddingRight: '1rem',
 
 	canvas: {
 		width: '100%',

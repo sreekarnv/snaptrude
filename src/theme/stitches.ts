@@ -20,6 +20,9 @@ export const {
 			default: 'all 0.3s ease-out',
 		},
 	},
+	media: {
+		bp1: '(max-width: 640px)',
+	},
 });
 
 export const useGlobalStyles = globalCss({

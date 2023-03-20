@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-import IndexPage from './pages';
-import ResultPage from './pages/result';
-import { useGlobalStyles } from './theme/stitches';
+import IndexPage from '@/pages/index';
+import ResultPage from '@/pages/result';
+import { useGlobalStyles } from '@/theme/stitches';
 
 interface AppProps extends React.PropsWithChildren {}
 
